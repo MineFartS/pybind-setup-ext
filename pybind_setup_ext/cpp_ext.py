@@ -34,6 +34,7 @@ class cpp_ext(st.Extension):
         extra_objects: list[str] = [],
         include_dirs: list[str] = [],
         sources: list[str] = [],
+        extra_link_args: list[str] = [],
     ) -> None:
 
         self.platforms = platforms
@@ -54,6 +55,8 @@ class cpp_ext(st.Extension):
             cpp_path.parent.as_posix(),
             *include_dirs,
         ]
+
+        _kw['extra_link_args'] = extra_link_args
 
         for pattern in extra_objects:
             _kw['extra_objects'] += glob(pattern)
