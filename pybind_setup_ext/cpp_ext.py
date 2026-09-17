@@ -14,6 +14,8 @@ _kw_templ = {
         get_include(),
     ],
 
+    "extra_objects": [],
+
     'language': 'c++',
 
 }
@@ -29,7 +31,7 @@ class cpp_ext(st.Extension):
         cpp_path: str|Path,
         *,
         platforms: list[_plats] = ['win32', 'linux', 'darwin'],
-        extra_objects: str = None,
+        extra_objects: list[str] = [],
         include_dirs: list[str] = [],
         sources: list[str] = [],
     ) -> None:
@@ -53,8 +55,8 @@ class cpp_ext(st.Extension):
             *include_dirs,
         ]
 
-        if extra_objects is not None:
-            _kw['extra_objects'] = glob(extra_objects)
+        for pattern in extra_objects:
+            _kw['extra_objects'] += glob(pattern)
 
         super().__init__(**_kw)
 
