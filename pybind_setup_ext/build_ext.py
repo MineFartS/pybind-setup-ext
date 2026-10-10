@@ -7,7 +7,8 @@ def gen_stubs(m:str, o:str) -> None:
     stubgen.generate_stubs(stubgen.parse_options([
         '-m', m,
         '-o', abspath(o), 
-        '--inspect-mode'
+        '--inspect-mode',
+        '--include-private',
     ]))
 
 class build_ext(__build_ext):
