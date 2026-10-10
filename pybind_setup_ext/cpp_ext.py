@@ -12,6 +12,7 @@ _kw_templ = {
 
     'include_dirs': [
         get_include(),
+        st.find_packages('.')[0],
     ],
 
     "extra_objects": [],
