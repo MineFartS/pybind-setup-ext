@@ -1,4 +1,5 @@
 from pybind11 import get_include
+from itertools import chain
 from typing import Literal
 from sys import platform
 from pathlib import Path
@@ -53,15 +54,17 @@ class cpp_ext(st.Extension):
 
             sources = [cpp_path.as_posix()] + sources,
 
-            extra_objects = [glob(pat) for pat in extra_objects] + _extra_objects,
-
             include_dirs = [cpp_path.parent.as_posix()] + include_dirs + _include_dirs,
 
             extra_compile_args = _extra_compile_args,
             extra_link_args = extra_link_args,
+            extra_objects = _extra_objects,
             language = 'c++',
 
         )
+
+        for pat in extra_objects:
+            self.extra_objects += glob(pat)
 
     def __bool__(self) -> bool:
         return platform in self.platforms
