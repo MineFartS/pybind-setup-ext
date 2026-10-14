@@ -41,6 +41,7 @@ class cpp_ext(st.Extension):
         include_dirs: list[str] = [],
         sources: list[str] = [],
         extra_link_args: list[str] = [],
+        extra_compile_args: list[str] = [],
     ) -> None:
 
         self.platforms = platforms
@@ -56,7 +57,7 @@ class cpp_ext(st.Extension):
 
             include_dirs = [cpp_path.parent.as_posix()] + include_dirs + _include_dirs,
 
-            extra_compile_args = _extra_compile_args,
+            extra_compile_args = extra_compile_args + _extra_compile_args,
             extra_link_args = extra_link_args,
             extra_objects = _extra_objects,
             language = 'c++',
