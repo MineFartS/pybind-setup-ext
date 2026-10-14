@@ -14,7 +14,7 @@ _platforms = Literal['win32', 'linux', 'darwin']
 
 _extra_compile_args: list[str]
 if platform == "win32":
-    _extra_compile_args = ["/std:c++20", "/EHsc"]
+    _extra_compile_args = ["/std:c++20", "/EHsc", "/Zi"]
 else:
     _extra_compile_args = ["-std=c++20", "-fvisibility=hidden"]
 
@@ -25,6 +25,8 @@ _extra_objects: list[str] = []
 #========================================================
 
 _extra_link_args: list[str] = []
+if platform == "win32":
+    _extra_link_args += ["/DEBUG"]
 
 #========================================================
 
