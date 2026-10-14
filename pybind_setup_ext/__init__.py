@@ -8,11 +8,13 @@ from .cpp_ext import (
     _extra_compile_args as extra_compile_args,
     _extra_objects as extra_objects,
     _include_dirs as include_dirs,
+    _extra_link_args as extra_link_args,
 )
 
 __all__ = [
     "cpp_ext", "setup", "update_submodule", 
     "extra_compile_args", "extra_objects", "include_dirs",
+    "extra_link_args"
 ]
 
 def setup(*ext_modules:cpp_ext) -> None:

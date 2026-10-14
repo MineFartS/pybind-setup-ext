@@ -24,6 +24,10 @@ _extra_objects: list[str] = []
 
 #========================================================
 
+_extra_link_args: list[str] = []
+
+#========================================================
+
 _include_dirs: list[str] = [
     get_include(),
     st.find_packages('.')[0],
@@ -58,7 +62,7 @@ class cpp_ext(st.Extension):
             include_dirs = [cpp_path.parent.as_posix()] + include_dirs + _include_dirs,
 
             extra_compile_args = extra_compile_args + _extra_compile_args,
-            extra_link_args = extra_link_args,
+            extra_link_args = extra_link_args + _extra_link_args,
             extra_objects = _extra_objects,
             language = 'c++',
 
