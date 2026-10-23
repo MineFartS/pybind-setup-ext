@@ -9,7 +9,6 @@ requires-python = ">=3.12"
 dependencies = [
     "setuptools>=74.1",
     "pybind11",
-    "lf-crlf",
     "mypy"
 ]
 
