@@ -1,20 +1,15 @@
 from setuptools.command.build_ext import build_ext as __build_ext
+from mypy.stubgen import stubgen
 from os.path import abspath
-from mypy import stubgen
-from os import environ
 import sys
 
 def gen_stubs(m:str, o:str) -> None:
-    environ["STUBGEN"] = "1"
-    try:
-        stubgen.generate_stubs(stubgen.parse_options([
-            '-m', m,
-            '-o', abspath(o), 
-            '--inspect-mode',
-            '--include-private',
-        ]))
-    finally:
-        environ.pop("STUBGEN", None)
+    stubgen([
+        '-m', m,
+        '-o', abspath(o), 
+        '--inspect-mode',
+        '--include-private',
+    ])
 
 class build_ext(__build_ext):
     def run(self) -> None:
